@@ -45,7 +45,6 @@
             this.sourceLanguageTextBox.Name = "sourceLanguageTextBox";
             this.sourceLanguageTextBox.Size = new System.Drawing.Size(92, 20);
             this.sourceLanguageTextBox.TabIndex = 0;
-            this.targetLanguageTextBox.TextChanged += new System.EventHandler(this.sourceLanguageTextBox_TextChanged);
             // 
             // sourceLanguageLabel
             // 
@@ -65,14 +64,6 @@
             this.targetLanguageLabel.TabIndex = 2;
             this.targetLanguageLabel.Text = "Target Language";
             // 
-            // targetLanguageTextBox
-            // 
-            this.targetLanguageTextBox.Location = new System.Drawing.Point(255, 87);
-            this.targetLanguageTextBox.Name = "targetLanguageTextBox";
-            this.targetLanguageTextBox.Size = new System.Drawing.Size(95, 20);
-            this.targetLanguageTextBox.TabIndex = 4;
-            this.targetLanguageTextBox.TextChanged += new System.EventHandler(this.targetLanguageTextBox_TextChanged);
-            // 
             // translateButton
             // 
             this.translateButton.BackColor = System.Drawing.SystemColors.ButtonFace;
@@ -83,6 +74,14 @@
             this.translateButton.Text = "Translate";
             this.translateButton.UseVisualStyleBackColor = false;
             this.translateButton.Click += new System.EventHandler(this.translateButton_Click);
+            // 
+            // targetLanguageTextBox
+            // 
+            this.targetLanguageTextBox.Location = new System.Drawing.Point(255, 87);
+            this.targetLanguageTextBox.Name = "targetLanguageTextBox";
+            this.targetLanguageTextBox.Size = new System.Drawing.Size(95, 20);
+            this.targetLanguageTextBox.TabIndex = 4;
+            this.targetLanguageTextBox.TextChanged += new System.EventHandler(this.outputTextBox_TextChanged);
             // 
             // inputLabel
             // 
@@ -118,9 +117,8 @@
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.Size = new System.Drawing.Size(280, 190);
             this.outputTextBox.TabIndex = 8;
-            this.targetLanguageTextBox.TextChanged += new System.EventHandler(this.outputTextBox_TextChanged);
             // 
-            // TranslatorGUI
+            // TranslateGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -136,7 +134,7 @@
             this.Controls.Add(this.sourceLanguageLabel);
             this.Controls.Add(this.sourceLanguageTextBox);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Name = "TranslatorGUI";
+            this.Name = "TranslateGUI";
             this.Text = "Translator";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -156,4 +154,3 @@
         private System.Windows.Forms.TextBox outputTextBox;
     }
 }
-

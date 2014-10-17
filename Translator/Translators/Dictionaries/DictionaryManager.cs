@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Translate.Translators.Utilities;
+﻿using Translate.Translators.Utilities;
 
 namespace Translate.Translators.Dictionaries
 {
-    class DictionaryManager : ObjectManager
+    class DictionaryManager : TranslatorObjectList
     {
-        IList<Dictionary> dictionaries;
-
-        public DictionaryManager()
+        public DictionaryManager(string id = "")
+            : base(id)
         {
-            dictionaries = new List<Dictionary>();
         }
     }
 }

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Translate.Translators.Utilities;
 
 namespace Translate.Translators.Grammars
 {
-    class Grammar
+    class Grammar : TranslatorObject
     {
         string sourceLanguage;
         string targetLanguage;
 
-        public Grammar(string sourceLanguage, string targetLanguage)
+        public Grammar(string sourceLanguage, string targetLanguage, string id = "")
+            : base(id)
         {
             this.sourceLanguage = sourceLanguage;
             this.targetLanguage = targetLanguage;
@@ -28,4 +25,3 @@ namespace Translate.Translators.Grammars
         }
     }
 }
-

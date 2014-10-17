@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Translate.Translators.Dictionaries;
 using Translate.Translators.Grammars;
+using Translate.Translators.Utilities;
 
 namespace Translate.Translators
 {
-    class Translator
+    class Translator : TranslatorObject
     {
         string sourceLanguage;
         string targetLanguage;
@@ -16,7 +13,8 @@ namespace Translate.Translators
         DictionaryManager dictionaries;
         GrammarManager grammars;
 
-        public Translator(string sourceLanguage, string targetLanguage)
+        public Translator(string sourceLanguage, string targetLanguage, string id = "")
+            : base(id)
         {
             this.sourceLanguage = sourceLanguage;
             this.targetLanguage = targetLanguage;
@@ -25,24 +23,24 @@ namespace Translate.Translators
             grammars = new GrammarManager();
 
             // Adding back and forth dictionaries.
-            this.dictionaries.Add(new Dictionary(sourceLanguage, targetLanguage));
-            this.dictionaries.Add(new Dictionary(targetLanguage, sourceLanguage));
+            this.dictionaries.Add(new Dictionary(sourceLanguage, targetLanguage, sourceLanguage + targetLanguage));
+            this.dictionaries.Add(new Dictionary(targetLanguage, sourceLanguage, targetLanguage + sourceLanguage));
 
             // Adding back and forth grammars.
-            this.grammars.Add(new Grammar(sourceLanguage, targetLanguage));
-            this.grammars.Add(new Grammar(targetLanguage, sourceLanguage));
+            this.grammars.Add(new Grammar(sourceLanguage, targetLanguage, sourceLanguage + targetLanguage));
+            this.grammars.Add(new Grammar(targetLanguage, sourceLanguage, targetLanguage + sourceLanguage));
         }
 
         public void Load()
         {
             // Loading the dictionaries and grammars.
-            foreach (Dictionary d in dictionaries)
+            foreach (Dictionary d in dictionaries.Objects)
                 d.Load();
-            foreach (Grammar g in grammars)
+            foreach (Grammar g in grammars.Objects)
                 g.Load();
         }
 
-        public string TranslateText(string inputText)
+        public string Translate(string inputText)
         {
             string outputText = "Hi";
 

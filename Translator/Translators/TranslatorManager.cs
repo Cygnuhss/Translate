@@ -1,19 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Translate.Translators.Utilities;
 
 namespace Translate.Translators
 {
-    class TranslatorManager : ObjectManager
+    class TranslatorManager : TranslatorObjectList
     {
-        IList<Translator> translators;
-
-        public TranslatorManager()
+        public TranslatorManager(string id = "") : base(id)
         {
-            translators = new List<Translator>();
+        }
+
+        public void InitialiseTranslator(string sourceLanguage, string targetLanguage)
+        {
+            // Creating the translator and adding it to the translator manager.
+            string id = sourceLanguage + targetLanguage;
+            Translator translator = new Translator(sourceLanguage, targetLanguage, id);
+            this.Add(translator);
+        }
+
+        public string Translate(string sourceLanguage, string targetLanguage, string inputText)
+        {
+            // Search through the available translators to find the right pair.
+            foreach (Translator t in this.Objects)
+                if (sourceLanguage == t.Languages.Item1 && targetLanguage == t.Languages.Item2)
+                    return t.Translate(inputText);
+
+            return String.Empty;
         }
     }
 }

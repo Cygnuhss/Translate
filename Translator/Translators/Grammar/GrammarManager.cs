@@ -1,20 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Translate.Translators.Utilities;
+﻿using Translate.Translators.Utilities;
 
 namespace Translate.Translators.Grammars
 {
-    class GrammarManager : ObjectManager
+    class GrammarManager : TranslatorObjectList
     {
-        IList<Grammar> grammars;
-
-        public GrammarManager()
+        public GrammarManager(string id = "")
+            : base(id)
         {
-            grammars = new List<Grammar>();
         }
     }
 }
-
