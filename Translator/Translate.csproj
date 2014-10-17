@@ -7,7 +7,7 @@
     <ProjectGuid>{914A0142-3E98-4D97-A72B-936ED8AF2BD5}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Translator</RootNamespace>
+    <RootNamespace>Translate</RootNamespace>
     <AssemblyName>Translator</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -44,16 +44,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TranslatorGUI.cs">
+    <Compile Include="TranslateMain.cs" />
+    <Compile Include="Translators\Dictionaries\Dictionary.cs" />
+    <Compile Include="Translators\Dictionaries\DictionaryManager.cs" />
+    <Compile Include="Translators\Grammar\Grammar.cs" />
+    <Compile Include="Translators\Grammar\GrammarManager.cs" />
+    <Compile Include="Translators\Utilities\ObjectManager.cs" />
+    <Compile Include="Translators\Translator.cs" />
+    <Compile Include="TranslateGUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TranslatorGUI.Designer.cs">
-      <DependentUpon>TranslatorGUI.cs</DependentUpon>
+    <Compile Include="TranslateGUI.Designer.cs">
+      <DependentUpon>TranslateGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="TranslatorGUI.resx">
-      <DependentUpon>TranslatorGUI.cs</DependentUpon>
+    <Compile Include="Translators\TranslatorManager.cs" />
+    <EmbeddedResource Include="TranslateGUI.resx">
+      <DependentUpon>TranslateGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -63,6 +71,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,6 +86,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

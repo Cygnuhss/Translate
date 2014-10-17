@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Translator
+namespace Translate
 {
     static class Program
     {
@@ -14,9 +14,8 @@ namespace Translator
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TranslatorGUI());
+            // Run the translator main.
+            TranslateMain translateMain = new TranslateMain();
         }
     }
 }
