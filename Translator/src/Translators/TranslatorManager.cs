@@ -20,14 +20,40 @@ namespace Translate.Translators
             Console.WriteLine("Translator initialised: " + id);
         }
 
-        public string Translate(string sourceLanguage, string targetLanguage, string inputText)
+        public void Update(string translatorID)
         {
-            // Search through the available translators to find the right pair.
-            foreach (Translator t in this.Objects)
-                if (sourceLanguage == t.Languages.Item1 && targetLanguage == t.Languages.Item2)
-                    return t.Translate(inputText);
+            try
+            {              
+                // Update the corresponding translator.
+                Translator t = this.Find(translatorID) as Translator;
+                t.Update();
+            } catch (NullReferenceException)
+            {
+                Console.WriteLine("No translator found: {0}", translatorID);
+            }
+        }
 
-            return String.Empty;
+        public string Translate(string inputText, string translatorID)
+        {
+            string noTranslationMessage = String.Join(
+                " ",
+                "The sentence is not translated. This means that we do not have either",
+                "a translator pair for the selected languages, or any dictionary entries,",
+                "or the grammatical rules to make the translation possible.");
+
+            try
+            {
+                // Search through the available translators to find the right pair.
+                Translator t = this.Find(translatorID) as Translator;
+                string text = t.Translate(inputText);
+                if (text == "")
+                    return noTranslationMessage;
+                return text;
+            } catch (NullReferenceException)
+            {
+                Console.WriteLine("No translator found: {0}", translatorID);
+                return noTranslationMessage;
+            }
         }
     }
 }

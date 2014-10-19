@@ -29,6 +29,8 @@ namespace Translate.Translators
             // Adding back and forth grammars.
             this.grammars.Add(new Grammar(sourceLanguage, sourceLanguage, sourceLanguage + '_' + targetLanguage));
             this.grammars.Add(new Grammar(targetLanguage, targetLanguage, targetLanguage + '_' + sourceLanguage));
+
+            Load();
         }
 
         public void Load()
@@ -38,6 +40,15 @@ namespace Translate.Translators
                 d.Load();
             foreach (Grammar g in grammars.Objects)
                 g.Load();
+        }
+
+        public void Update()
+        {
+            // Updating the dictionaries and grammars.
+            foreach (Dictionary d in dictionaries.Objects)
+                d.Update();
+            foreach (Grammar g in grammars.Objects)
+                g.Update();
         }
 
         public string Translate(string inputText)
@@ -54,6 +65,16 @@ namespace Translate.Translators
         public Tuple<string, string> Languages
         {
             get { return new Tuple<string, string>(sourceLanguage, targetLanguage); }
+        }
+
+        public DictionaryManager DictionaryManager
+        {
+            get { return dictionaries; }
+        }
+
+        public GrammarManager GrammarManager
+        {
+            get { return grammars; }
         }
     }
 }

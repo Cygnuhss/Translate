@@ -37,19 +37,26 @@
             this.inputTextBox = new System.Windows.Forms.TextBox();
             this.outputLabel = new System.Windows.Forms.Label();
             this.outputTextBox = new System.Windows.Forms.TextBox();
+            this.loadTranslatorButton = new System.Windows.Forms.Button();
+            this.originalWordLabel = new System.Windows.Forms.Label();
+            this.originalWordTextBox = new System.Windows.Forms.TextBox();
+            this.translationWordLabel = new System.Windows.Forms.Label();
+            this.translationWordTextBox = new System.Windows.Forms.TextBox();
+            this.updateTranslatorButton = new System.Windows.Forms.Button();
+            this.addDictionaryEntryButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sourceLanguageTextBox
             // 
-            this.sourceLanguageTextBox.Location = new System.Drawing.Point(255, 44);
+            this.sourceLanguageTextBox.Location = new System.Drawing.Point(55, 44);
             this.sourceLanguageTextBox.Name = "sourceLanguageTextBox";
-            this.sourceLanguageTextBox.Size = new System.Drawing.Size(92, 20);
+            this.sourceLanguageTextBox.Size = new System.Drawing.Size(95, 20);
             this.sourceLanguageTextBox.TabIndex = 0;
             // 
             // sourceLanguageLabel
             // 
             this.sourceLanguageLabel.AutoSize = true;
-            this.sourceLanguageLabel.Location = new System.Drawing.Point(255, 28);
+            this.sourceLanguageLabel.Location = new System.Drawing.Point(55, 28);
             this.sourceLanguageLabel.Name = "sourceLanguageLabel";
             this.sourceLanguageLabel.Size = new System.Drawing.Size(92, 13);
             this.sourceLanguageLabel.TabIndex = 1;
@@ -58,7 +65,7 @@
             // targetLanguageLabel
             // 
             this.targetLanguageLabel.AutoSize = true;
-            this.targetLanguageLabel.Location = new System.Drawing.Point(258, 71);
+            this.targetLanguageLabel.Location = new System.Drawing.Point(58, 71);
             this.targetLanguageLabel.Name = "targetLanguageLabel";
             this.targetLanguageLabel.Size = new System.Drawing.Size(89, 13);
             this.targetLanguageLabel.TabIndex = 2;
@@ -77,7 +84,7 @@
             // 
             // targetLanguageTextBox
             // 
-            this.targetLanguageTextBox.Location = new System.Drawing.Point(255, 87);
+            this.targetLanguageTextBox.Location = new System.Drawing.Point(55, 87);
             this.targetLanguageTextBox.Name = "targetLanguageTextBox";
             this.targetLanguageTextBox.Size = new System.Drawing.Size(95, 20);
             this.targetLanguageTextBox.TabIndex = 4;
@@ -118,12 +125,84 @@
             this.outputTextBox.Size = new System.Drawing.Size(280, 190);
             this.outputTextBox.TabIndex = 8;
             // 
+            // loadTranslatorButton
+            // 
+            this.loadTranslatorButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.loadTranslatorButton.Location = new System.Drawing.Point(156, 43);
+            this.loadTranslatorButton.Name = "loadTranslatorButton";
+            this.loadTranslatorButton.Size = new System.Drawing.Size(102, 20);
+            this.loadTranslatorButton.TabIndex = 10;
+            this.loadTranslatorButton.Text = "Load Translator";
+            this.loadTranslatorButton.UseVisualStyleBackColor = false;
+            this.loadTranslatorButton.Click += new System.EventHandler(this.loadTranslatorButton_Click);
+            // 
+            // originalWordLabel
+            // 
+            this.originalWordLabel.AutoSize = true;
+            this.originalWordLabel.Location = new System.Drawing.Point(471, 28);
+            this.originalWordLabel.Name = "originalWordLabel";
+            this.originalWordLabel.Size = new System.Drawing.Size(71, 13);
+            this.originalWordLabel.TabIndex = 12;
+            this.originalWordLabel.Text = "Original Word";
+            // 
+            // originalWordTextBox
+            // 
+            this.originalWordTextBox.Location = new System.Drawing.Point(459, 44);
+            this.originalWordTextBox.Name = "originalWordTextBox";
+            this.originalWordTextBox.Size = new System.Drawing.Size(95, 20);
+            this.originalWordTextBox.TabIndex = 11;
+            // 
+            // translationWordLabel
+            // 
+            this.translationWordLabel.AutoSize = true;
+            this.translationWordLabel.Location = new System.Drawing.Point(477, 71);
+            this.translationWordLabel.Name = "translationWordLabel";
+            this.translationWordLabel.Size = new System.Drawing.Size(59, 13);
+            this.translationWordLabel.TabIndex = 14;
+            this.translationWordLabel.Text = "Translation";
+            // 
+            // translationWordTextBox
+            // 
+            this.translationWordTextBox.Location = new System.Drawing.Point(459, 87);
+            this.translationWordTextBox.Name = "translationWordTextBox";
+            this.translationWordTextBox.Size = new System.Drawing.Size(95, 20);
+            this.translationWordTextBox.TabIndex = 13;
+            // 
+            // updateTranslatorButton
+            // 
+            this.updateTranslatorButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.updateTranslatorButton.Location = new System.Drawing.Point(156, 86);
+            this.updateTranslatorButton.Name = "updateTranslatorButton";
+            this.updateTranslatorButton.Size = new System.Drawing.Size(102, 20);
+            this.updateTranslatorButton.TabIndex = 15;
+            this.updateTranslatorButton.Text = "Update Translator";
+            this.updateTranslatorButton.UseVisualStyleBackColor = false;
+            this.updateTranslatorButton.Click += new System.EventHandler(this.updateTranslatorButton_Click);
+            // 
+            // addDictionaryEntryButton
+            // 
+            this.addDictionaryEntryButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.addDictionaryEntryButton.Location = new System.Drawing.Point(459, 113);
+            this.addDictionaryEntryButton.Name = "addDictionaryEntryButton";
+            this.addDictionaryEntryButton.Size = new System.Drawing.Size(95, 35);
+            this.addDictionaryEntryButton.TabIndex = 16;
+            this.addDictionaryEntryButton.Text = "Add Dictionary Entry";
+            this.addDictionaryEntryButton.UseVisualStyleBackColor = false;
+            this.addDictionaryEntryButton.Click += new System.EventHandler(this.addDictionaryEntryButton_Click);
+            // 
             // TranslateGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(600, 400);
+            this.Controls.Add(this.addDictionaryEntryButton);
+            this.Controls.Add(this.updateTranslatorButton);
+            this.Controls.Add(this.translationWordLabel);
+            this.Controls.Add(this.translationWordTextBox);
+            this.Controls.Add(this.originalWordLabel);
+            this.Controls.Add(this.originalWordTextBox);
+            this.Controls.Add(this.loadTranslatorButton);
             this.Controls.Add(this.outputLabel);
             this.Controls.Add(this.outputTextBox);
             this.Controls.Add(this.inputLabel);
@@ -152,5 +231,12 @@
         private System.Windows.Forms.TextBox inputTextBox;
         private System.Windows.Forms.Label outputLabel;
         private System.Windows.Forms.TextBox outputTextBox;
+        private System.Windows.Forms.Button loadTranslatorButton;
+        private System.Windows.Forms.Label originalWordLabel;
+        private System.Windows.Forms.TextBox originalWordTextBox;
+        private System.Windows.Forms.Label translationWordLabel;
+        private System.Windows.Forms.TextBox translationWordTextBox;
+        private System.Windows.Forms.Button updateTranslatorButton;
+        private System.Windows.Forms.Button addDictionaryEntryButton;
     }
 }
