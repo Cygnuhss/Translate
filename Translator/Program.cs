@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Translate
 {
@@ -10,8 +11,10 @@ namespace Translate
         [STAThread]
         static void Main()
         {
-            // Run the translator main.
-            TranslateMain translateMain = new TranslateMain();
+            // Start the GUI.
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new TranslateGUI());
         }
     }
 }

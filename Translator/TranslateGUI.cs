@@ -6,9 +6,14 @@ namespace Translate
 {
     public partial class TranslateGUI : Form
     {
+        public TranslateMain translateMain;
+
         public TranslateGUI()
         {
             InitializeComponent();
+
+            // Run the translator main.
+            translateMain = new TranslateMain();
         }
 
         private void sourceLanguageTextBox_TextChanged(object sender, EventArgs e)
@@ -34,6 +39,7 @@ namespace Translate
         private void translateButton_Click(object sender, EventArgs e)
         {
             // Initialise translator with the source and target language.
+            Console.WriteLine(TranslateMain.TranslatorObjectList.Objects.Count);
             TranslatorManager translatorManager = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
             translatorManager.InitialiseTranslator(sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
             // Translate the input text and place it in the output text. Cursors appears as 'Wait' cursor.
