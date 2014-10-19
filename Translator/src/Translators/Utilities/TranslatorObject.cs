@@ -1,4 +1,5 @@
-﻿namespace Translate.Translators.Utilities
+﻿using System;
+namespace Translate.Translators.Utilities
 {
     public abstract class TranslatorObject
     {
@@ -20,14 +21,6 @@
                     return this;
             }
         }
-
-        /*public TranslatorObjectList TranslateList
-        {
-            get
-            {
-                return Root as TranslatorObjectList;
-            }
-        }*/
 
         public virtual TranslatorObject Parent
         {

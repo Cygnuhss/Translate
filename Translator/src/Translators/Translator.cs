@@ -7,8 +7,8 @@ namespace Translate.Translators
 {
     class Translator : TranslatorObject
     {
-        string sourceLanguage;
-        string targetLanguage;
+        protected string sourceLanguage;
+        protected string targetLanguage;
 
         DictionaryManager dictionaries;
         GrammarManager grammars;
@@ -23,12 +23,12 @@ namespace Translate.Translators
             grammars = new GrammarManager();
 
             // Adding back and forth dictionaries.
-            this.dictionaries.Add(new Dictionary(sourceLanguage, targetLanguage, sourceLanguage + targetLanguage));
-            this.dictionaries.Add(new Dictionary(targetLanguage, sourceLanguage, targetLanguage + sourceLanguage));
+            this.dictionaries.Add(new Dictionary(sourceLanguage, targetLanguage, sourceLanguage + '_' + targetLanguage));
+            this.dictionaries.Add(new Dictionary(targetLanguage, sourceLanguage, targetLanguage + '_' + sourceLanguage));
 
             // Adding back and forth grammars.
-            this.grammars.Add(new Grammar(sourceLanguage, targetLanguage, sourceLanguage + targetLanguage));
-            this.grammars.Add(new Grammar(targetLanguage, sourceLanguage, targetLanguage + sourceLanguage));
+            this.grammars.Add(new Grammar(sourceLanguage, sourceLanguage, sourceLanguage + '_' + targetLanguage));
+            this.grammars.Add(new Grammar(targetLanguage, targetLanguage, targetLanguage + '_' + sourceLanguage));
         }
 
         public void Load()
@@ -42,7 +42,11 @@ namespace Translate.Translators
 
         public string Translate(string inputText)
         {
-            string outputText = "Hi";
+            string outputText = "";
+            Dictionary d = dictionaries.Find(sourceLanguage + "_" + targetLanguage) as Dictionary;
+            foreach (Tuple<string, string> entry in d.Entries)
+                if (entry.Item1 == inputText)
+                    outputText = entry.Item2;
 
             return outputText;
         }

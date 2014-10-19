@@ -12,9 +12,12 @@ namespace Translate.Translators
         public void InitialiseTranslator(string sourceLanguage, string targetLanguage)
         {
             // Creating the translator and adding it to the translator manager.
-            string id = sourceLanguage + targetLanguage;
+            string id = sourceLanguage + '_' + targetLanguage;
+
+            Console.WriteLine("Initialising translator: " + id);
             Translator translator = new Translator(sourceLanguage, targetLanguage, id);
             this.Add(translator);
+            Console.WriteLine("Translator initialised: " + id);
         }
 
         public string Translate(string sourceLanguage, string targetLanguage, string inputText)
