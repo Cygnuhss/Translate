@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Translate.Translators;
 using Translate.Translators.Dictionaries;
+using Translate.Translators.Grammars;
 
 namespace Translate
 {
@@ -61,7 +62,7 @@ namespace Translate
             // Update the translator. Cursors appears as 'Wait' cursor in the meanwhile.
             updateTranslatorButton.UseWaitCursor = true;
             TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
-            string translatorID = sourceLanguageTextBox.Text + '_' + targetLanguageTextBox.Text;
+            string translatorID = string.Format("{0}_{1}", sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
             tm.Update(translatorID);
             updateTranslatorButton.UseWaitCursor = false;
         }
@@ -73,9 +74,36 @@ namespace Translate
             TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
             string id = sourceLanguageTextBox.Text + '_' + targetLanguageTextBox.Text;
             Translator t = tm.Find(id) as Translator;
-            Dictionary d = t.DictionaryManager.Find(id) as Dictionary;
-            d.AddEntry(originalWordTextBox.Text, translationWordTextBox.Text);
+            try
+            {
+                Dictionary d = t.DictionaryManager.Find(id) as Dictionary;
+                d.AddEntry(originalWordTextBox.Text, translationWordTextBox.Text);
+            } catch (NullReferenceException)
+            {
+                Console.WriteLine("File not found: {0}. Dictionary not updated.", id);
+            }
             addDictionaryEntryButton.UseWaitCursor = false;
         }
+
+        /*
+        private void addGrammarEntryButton_Click(object sender, EventArgs e)
+        {
+            // Add the entry to the grammar. Cursors appears as 'Wait' cursor in the meanwhile.
+            addGrammarEntryButton.UseWaitCursor = true;
+            TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
+            string translatorID = string.Format("{0}_{1}", sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
+            Translator t = tm.Find(id) as Translator;
+            try
+            {
+                Grammar g = t.GrammarManager.Find(id) as Grammar;
+                g.AddEntry(ruleTextBox.Text);
+            }
+            catch (NullReferenceException)
+            {
+                Console.WriteLine("File not found: {0}. Grammar not updated.", id);
+            }
+            addGrammarEntryButton.UseWaitCursor = false;
+        }
+        */
     }
 }

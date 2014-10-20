@@ -31,7 +31,7 @@ namespace Translate.Translators.Grammars
             string cd = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string path = Path.Combine(cd, @"res\Grammars", fileName);
 
-            Console.WriteLine("Loading grammar: " + fileName);
+            Console.WriteLine("Loading grammar: {0}", fileName);
 
             try
             {
@@ -57,7 +57,7 @@ namespace Translate.Translators.Grammars
             string cd = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string path = Path.Combine(cd, @"res\Grammars", fileName);
 
-            Console.WriteLine("Updating grammar: " + fileName);
+            Console.WriteLine("Updating grammar: {0}", fileName);
 
             try
             {
@@ -75,7 +75,7 @@ namespace Translate.Translators.Grammars
                     AddEntry(rule, fileName, path);
                 }
 
-                Console.WriteLine("Grammar updated: " + fileName);
+                Console.WriteLine("Grammar updated: {0}", fileName);
             }
             catch (IOException)
             {
@@ -87,12 +87,24 @@ namespace Translate.Translators.Grammars
         {
             string entry = rule;
 
-            Console.WriteLine("Adding entry: " + entry + " to grammar " + fileName);
+            Console.WriteLine("Adding entry: {0} to grammar {1}", entry, fileName);
 
             using (StreamWriter w = File.AppendText(path))
                 w.WriteLine(entry);
 
-            Console.WriteLine("Entry added: " + entry + " to grammar " + fileName);
+            Console.WriteLine("Entry added: {0} to grammar {1}", entry, fileName);
+        }
+
+        public void AddEntryToFile(string rule, string fileName, string path)
+        {
+            string entry = rule;
+
+            Console.WriteLine("Adding entry: {0} to grammar {1}", entry, fileName);
+
+            using (StreamWriter w = File.AppendText(path))
+                w.WriteLine(entry);
+
+            Console.WriteLine("Entry added: {0} to grammar {1}", entry, fileName);
         }
 
         public Tuple<string, string> Languages

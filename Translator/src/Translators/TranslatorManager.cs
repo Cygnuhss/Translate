@@ -14,10 +14,19 @@ namespace Translate.Translators
             // Creating the translator and adding it to the translator manager.
             string id = sourceLanguage + '_' + targetLanguage;
 
-            Console.WriteLine("Initialising translator: " + id);
-            Translator translator = new Translator(sourceLanguage, targetLanguage, id);
-            this.Add(translator);
-            Console.WriteLine("Translator initialised: " + id);
+            Console.WriteLine("Initialising translator: {0}", id);
+
+            try
+            {
+                Translator translator = new Translator(sourceLanguage, targetLanguage, id);
+                this.Add(translator);
+
+                Console.WriteLine("Translator initialised: {0}", id);
+            } catch (NullReferenceException)
+            {
+                Console.WriteLine("Translator not found: {0}. Translator not initialised.", id);
+            }
+
         }
 
         public void Update(string translatorID)

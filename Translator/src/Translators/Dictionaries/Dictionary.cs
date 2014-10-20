@@ -31,7 +31,7 @@ namespace Translate.Translators.Dictionaries
             string cd = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string path = Path.Combine(cd, @"res\Dictionaries", fileName);
 
-            Console.WriteLine("Loading dictionary: " + fileName);
+            Console.WriteLine("Loading dictionary: {0}", fileName);
 
             try
             {
@@ -43,7 +43,7 @@ namespace Translate.Translators.Dictionaries
                     this.entries.Add(new Tuple<string, string>(pair[0], pair[1]));
                 }
 
-                Console.WriteLine("Dictionary loaded: " + fileName);
+                Console.WriteLine("Dictionary loaded: {0}", fileName);
             } catch (IOException)
             {
                 Console.WriteLine("File not found: {0}. Dictionary not loaded.", fileName);
@@ -55,7 +55,7 @@ namespace Translate.Translators.Dictionaries
             string cd = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string path = Path.Combine(cd, @"res\Dictionaries", fileName);
 
-            Console.WriteLine("Updating dictionary: " + fileName);
+            Console.WriteLine("Updating dictionary: {0}", fileName);
 
             int newLines = 1;
             try
@@ -80,7 +80,7 @@ namespace Translate.Translators.Dictionaries
                         AddEntryToFile(sourceWord, targetWord, fileName, path);
                     }
 
-                Console.WriteLine("Dictionary updated: " + fileName);
+                Console.WriteLine("Dictionary updated: {0}", fileName);
             }
         }
 
@@ -93,12 +93,12 @@ namespace Translate.Translators.Dictionaries
         {
             string entry = sourceWord + '\t' + targetWord;
 
-            Console.WriteLine("Adding entry: " + entry + " to dictionary " + fileName);
+            Console.WriteLine("Adding entry: {0} to dictionary {1}", entry, fileName);
 
             using (StreamWriter w = File.AppendText(path))
                 w.WriteLine(entry);
 
-            Console.WriteLine("Entry added: " + entry + " to dictionary " + fileName);
+            Console.WriteLine("Entry added: {0} to dictionary {1}", entry, fileName);
         }
 
         public Tuple<string, string> Languages

@@ -53,13 +53,27 @@ namespace Translate.Translators
 
         public string Translate(string inputText)
         {
+            // Translate the input.
+            // Takes an input as string and outputs the translation as a string.
+            // This translation is very basic, it translates every single word to its dictionary pair.
             string outputText = "";
-            Dictionary d = dictionaries.Find(sourceLanguage + "_" + targetLanguage) as Dictionary;
-            foreach (Tuple<string, string> entry in d.Entries)
-                if (entry.Item1 == inputText)
-                    outputText = entry.Item2;
+            string[] s = inputText.Split(' ');
 
-            return outputText;
+            Dictionary d = dictionaries.Find(sourceLanguage + "_" + targetLanguage) as Dictionary;
+            for (int w = 0; w < s.Length; w++)
+                foreach (Tuple<string, string> entry in d.Entries)
+                {
+                    if (entry.Item1 == s[w])
+                        outputText += entry.Item2 + ' ';
+                    else
+                    {
+                        outputText += string.Format("[NOT TRANSLATED: {0}]", s[w]);
+                        Console.WriteLine("Word not translated: {0}. The word is probably not in the dictionary.", s[w]);
+                    }
+                }
+
+            // Output text with uppercase starting character and added period at the end.
+            return char.ToUpper(outputText[0]) + outputText.Substring(1, outputText.Length - 1) + '.';
         }
 
         public Tuple<string, string> Languages
