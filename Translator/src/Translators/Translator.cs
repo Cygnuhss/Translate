@@ -61,19 +61,28 @@ namespace Translate.Translators
 
             Dictionary d = dictionaries.Find(sourceLanguage + "_" + targetLanguage) as Dictionary;
             for (int w = 0; w < s.Length; w++)
+            {
+                string word = "";
+
                 foreach (Tuple<string, string> entry in d.Entries)
                 {
+                    // Only finds the first entry in the list of entries.
+                    // TODO Add a system that compares possible entry ambiguities.
                     if (entry.Item1 == s[w])
-                        outputText += entry.Item2 + ' ';
-                    else
-                    {
-                        outputText += string.Format("[NOT TRANSLATED: {0}]", s[w]);
-                        Console.WriteLine("Word not translated: {0}. The word is probably not in the dictionary.", s[w]);
-                    }
+                        word = entry.Item2;
                 }
 
-            // Output text with uppercase starting character and added period at the end.
-            return char.ToUpper(outputText[0]) + outputText.Substring(1, outputText.Length - 1) + '.';
+                if (word == "")
+                {
+                    word = string.Format("[NOT TRANSLATED: {0}]", s[w]);
+                    Console.WriteLine("Word not translated: {0}. The word is probably not in the dictionary.", s[w]);
+                }
+
+                outputText += word + ' ';
+            }
+
+            // Output text with uppercase starting character and added period at the end while removing the last space.
+            return char.ToUpper(outputText[0]) + outputText.Substring(1, outputText.Length - 2) + '.';
         }
 
         public Tuple<string, string> Languages
