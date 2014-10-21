@@ -91,7 +91,7 @@ namespace Translate
             addGrammarEntryButton.UseWaitCursor = true;
             TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
             string id = sourceLanguageTextBox.Text;
-            Translator t = tm.Find(id) as Translator;
+            Translator t = tm.Find(string.Format("{0}_{1}", id, targetLanguageTextBox.Text)) as Translator;
             try
             {
                 Grammar g = t.GrammarManager.Find(id) as Grammar;

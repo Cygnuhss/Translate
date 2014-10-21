@@ -13,13 +13,14 @@ namespace Translate.Translators.Grammars
         protected string fileName;
 
         // A grammar is a list of strings containing the grammatical rules.
-        // TODO For easier handling, parse this into a list of all the parts of the rule.
-        IList<string> entries = new List<string>();
+        IList<string[]> entries;
 
         public Grammar(string sourceLanguage, string id = "")
             : base(id)
         {
             this.sourceLanguage = sourceLanguage;
+
+            entries = new List<string[]>();
 
             this.fileName = string.Format("gram_{0}.txt", sourceLanguage);
         }
@@ -37,8 +38,8 @@ namespace Translate.Translators.Grammars
 
                 foreach (string line in lines)
                 {
-                    // TODO Parse the rules into multiple parts for easier handling.
-                    string rule = line;
+                    // Split the rules into multiple parts for easier handling.
+                    string[] rule = line.Split(' ');
                     this.entries.Add(rule);
                 }
 
@@ -57,38 +58,45 @@ namespace Translate.Translators.Grammars
 
             Console.WriteLine("Updating grammar: {0}", fileName);
 
+            int newLines = 1;
             try
             {
                 // Adding the entries in grammar to the text file.
                 string[] lines = File.ReadAllLines(path);
                 int linesNr = lines.Length;
-                int newLines = entries.Count - linesNr;
-                if (newLines <= 0)
-                    return;
-
-                // Appending each new entry to the text file.
-                for (int i = newLines - 1; i < entries.Count; i++)
-                {
-                    string rule = entries[i];
-                    AddEntryToFile(rule, fileName, path);
-                }
-
-                Console.WriteLine("Grammar updated: {0}", fileName);
+                newLines = entries.Count - linesNr;
             }
             catch (IOException)
             {
-                Console.WriteLine("File not found: {0}. Grammar not loaded.", fileName);
+                Console.WriteLine("File not found: {0}. Grammar not updated.", fileName);
+            }
+            finally
+            {
+                // Appending each new entry to the text file.
+                if (newLines > 0)
+                    for (int i = newLines - 1; i < entries.Count; i++)
+                    {
+                        string[] rule = entries[i];
+                        AddEntryToFile(rule, fileName, path);
+                    }
+
+                Console.WriteLine("Grammar updated: {0}", fileName);
             }
         }
 
         public void AddEntry(string rule)
         {
+            this.entries.Add(rule.Split(' '));
+        }
+
+        public void AddEntry(string[] rule)
+        {
             this.entries.Add(rule);
         }
 
-        public void AddEntryToFile(string rule, string fileName, string path)
+        public void AddEntryToFile(string[] rule, string fileName, string path)
         {
-            string entry = rule;
+            string entry = string.Join(" ", rule);
 
             Console.WriteLine("Adding entry: {0} to grammar {1}", entry, fileName);
 
@@ -103,7 +111,7 @@ namespace Translate.Translators.Grammars
             get { return sourceLanguage; }
         }
 
-        public IList<string> Entries
+        public IList<string[]> Entries
         {
             get { return entries; }
         }
