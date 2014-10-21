@@ -44,11 +44,14 @@
             this.translationWordTextBox = new System.Windows.Forms.TextBox();
             this.updateTranslatorButton = new System.Windows.Forms.Button();
             this.addDictionaryEntryButton = new System.Windows.Forms.Button();
+            this.ruleLabel = new System.Windows.Forms.Label();
+            this.ruleTextBox = new System.Windows.Forms.TextBox();
+            this.addGrammarEntryButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sourceLanguageTextBox
             // 
-            this.sourceLanguageTextBox.Location = new System.Drawing.Point(55, 44);
+            this.sourceLanguageTextBox.Location = new System.Drawing.Point(15, 44);
             this.sourceLanguageTextBox.Name = "sourceLanguageTextBox";
             this.sourceLanguageTextBox.Size = new System.Drawing.Size(95, 20);
             this.sourceLanguageTextBox.TabIndex = 0;
@@ -56,7 +59,7 @@
             // sourceLanguageLabel
             // 
             this.sourceLanguageLabel.AutoSize = true;
-            this.sourceLanguageLabel.Location = new System.Drawing.Point(55, 28);
+            this.sourceLanguageLabel.Location = new System.Drawing.Point(15, 28);
             this.sourceLanguageLabel.Name = "sourceLanguageLabel";
             this.sourceLanguageLabel.Size = new System.Drawing.Size(92, 13);
             this.sourceLanguageLabel.TabIndex = 1;
@@ -84,7 +87,7 @@
             // 
             // targetLanguageTextBox
             // 
-            this.targetLanguageTextBox.Location = new System.Drawing.Point(55, 87);
+            this.targetLanguageTextBox.Location = new System.Drawing.Point(15, 87);
             this.targetLanguageTextBox.Name = "targetLanguageTextBox";
             this.targetLanguageTextBox.Size = new System.Drawing.Size(95, 20);
             this.targetLanguageTextBox.TabIndex = 4;
@@ -128,7 +131,7 @@
             // loadTranslatorButton
             // 
             this.loadTranslatorButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.loadTranslatorButton.Location = new System.Drawing.Point(156, 43);
+            this.loadTranslatorButton.Location = new System.Drawing.Point(116, 43);
             this.loadTranslatorButton.Name = "loadTranslatorButton";
             this.loadTranslatorButton.Size = new System.Drawing.Size(102, 20);
             this.loadTranslatorButton.TabIndex = 10;
@@ -139,7 +142,7 @@
             // originalWordLabel
             // 
             this.originalWordLabel.AutoSize = true;
-            this.originalWordLabel.Location = new System.Drawing.Point(471, 28);
+            this.originalWordLabel.Location = new System.Drawing.Point(505, 28);
             this.originalWordLabel.Name = "originalWordLabel";
             this.originalWordLabel.Size = new System.Drawing.Size(71, 13);
             this.originalWordLabel.TabIndex = 12;
@@ -147,7 +150,7 @@
             // 
             // originalWordTextBox
             // 
-            this.originalWordTextBox.Location = new System.Drawing.Point(459, 44);
+            this.originalWordTextBox.Location = new System.Drawing.Point(493, 44);
             this.originalWordTextBox.Name = "originalWordTextBox";
             this.originalWordTextBox.Size = new System.Drawing.Size(95, 20);
             this.originalWordTextBox.TabIndex = 11;
@@ -155,7 +158,7 @@
             // translationWordLabel
             // 
             this.translationWordLabel.AutoSize = true;
-            this.translationWordLabel.Location = new System.Drawing.Point(477, 71);
+            this.translationWordLabel.Location = new System.Drawing.Point(511, 71);
             this.translationWordLabel.Name = "translationWordLabel";
             this.translationWordLabel.Size = new System.Drawing.Size(59, 13);
             this.translationWordLabel.TabIndex = 14;
@@ -163,7 +166,7 @@
             // 
             // translationWordTextBox
             // 
-            this.translationWordTextBox.Location = new System.Drawing.Point(459, 87);
+            this.translationWordTextBox.Location = new System.Drawing.Point(493, 87);
             this.translationWordTextBox.Name = "translationWordTextBox";
             this.translationWordTextBox.Size = new System.Drawing.Size(95, 20);
             this.translationWordTextBox.TabIndex = 13;
@@ -171,7 +174,7 @@
             // updateTranslatorButton
             // 
             this.updateTranslatorButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.updateTranslatorButton.Location = new System.Drawing.Point(156, 86);
+            this.updateTranslatorButton.Location = new System.Drawing.Point(116, 86);
             this.updateTranslatorButton.Name = "updateTranslatorButton";
             this.updateTranslatorButton.Size = new System.Drawing.Size(102, 20);
             this.updateTranslatorButton.TabIndex = 15;
@@ -182,7 +185,7 @@
             // addDictionaryEntryButton
             // 
             this.addDictionaryEntryButton.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.addDictionaryEntryButton.Location = new System.Drawing.Point(459, 113);
+            this.addDictionaryEntryButton.Location = new System.Drawing.Point(493, 113);
             this.addDictionaryEntryButton.Name = "addDictionaryEntryButton";
             this.addDictionaryEntryButton.Size = new System.Drawing.Size(95, 35);
             this.addDictionaryEntryButton.TabIndex = 16;
@@ -190,12 +193,42 @@
             this.addDictionaryEntryButton.UseVisualStyleBackColor = false;
             this.addDictionaryEntryButton.Click += new System.EventHandler(this.addDictionaryEntryButton_Click);
             // 
+            // ruleLabel
+            // 
+            this.ruleLabel.AutoSize = true;
+            this.ruleLabel.Location = new System.Drawing.Point(380, 28);
+            this.ruleLabel.Name = "ruleLabel";
+            this.ruleLabel.Size = new System.Drawing.Size(29, 13);
+            this.ruleLabel.TabIndex = 18;
+            this.ruleLabel.Text = "Rule";
+            // 
+            // ruleTextBox
+            // 
+            this.ruleTextBox.Location = new System.Drawing.Point(320, 44);
+            this.ruleTextBox.Name = "ruleTextBox";
+            this.ruleTextBox.Size = new System.Drawing.Size(149, 20);
+            this.ruleTextBox.TabIndex = 17;
+            // 
+            // addGrammarEntryButton
+            // 
+            this.addGrammarEntryButton.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.addGrammarEntryButton.Location = new System.Drawing.Point(320, 70);
+            this.addGrammarEntryButton.Name = "addGrammarEntryButton";
+            this.addGrammarEntryButton.Size = new System.Drawing.Size(149, 22);
+            this.addGrammarEntryButton.TabIndex = 19;
+            this.addGrammarEntryButton.Text = "Add Grammar Entry";
+            this.addGrammarEntryButton.UseVisualStyleBackColor = false;
+            this.addGrammarEntryButton.Click += new System.EventHandler(this.addGrammarEntryButton_Click);
+            // 
             // TranslateGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(600, 400);
+            this.Controls.Add(this.addGrammarEntryButton);
+            this.Controls.Add(this.ruleLabel);
+            this.Controls.Add(this.ruleTextBox);
             this.Controls.Add(this.addDictionaryEntryButton);
             this.Controls.Add(this.updateTranslatorButton);
             this.Controls.Add(this.translationWordLabel);
@@ -238,5 +271,8 @@
         private System.Windows.Forms.TextBox translationWordTextBox;
         private System.Windows.Forms.Button updateTranslatorButton;
         private System.Windows.Forms.Button addDictionaryEntryButton;
+        private System.Windows.Forms.Label ruleLabel;
+        private System.Windows.Forms.TextBox ruleTextBox;
+        private System.Windows.Forms.Button addGrammarEntryButton;
     }
 }

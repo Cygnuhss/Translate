@@ -72,7 +72,7 @@ namespace Translate
             // Add the entry to the dictionary. Cursors appears as 'Wait' cursor in the meanwhile.
             addDictionaryEntryButton.UseWaitCursor = true;
             TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
-            string id = sourceLanguageTextBox.Text + '_' + targetLanguageTextBox.Text;
+            string id = string.Format("{0}_{1}", sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
             Translator t = tm.Find(id) as Translator;
             try
             {
@@ -85,13 +85,12 @@ namespace Translate
             addDictionaryEntryButton.UseWaitCursor = false;
         }
 
-        /*
         private void addGrammarEntryButton_Click(object sender, EventArgs e)
         {
             // Add the entry to the grammar. Cursors appears as 'Wait' cursor in the meanwhile.
             addGrammarEntryButton.UseWaitCursor = true;
             TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
-            string translatorID = string.Format("{0}_{1}", sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
+            string id = sourceLanguageTextBox.Text;
             Translator t = tm.Find(id) as Translator;
             try
             {
@@ -104,6 +103,5 @@ namespace Translate
             }
             addGrammarEntryButton.UseWaitCursor = false;
         }
-        */
     }
 }

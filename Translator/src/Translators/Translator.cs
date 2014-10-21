@@ -22,13 +22,13 @@ namespace Translate.Translators
             dictionaries = new DictionaryManager();
             grammars = new GrammarManager();
 
-            // Adding back and forth dictionaries.
+            // Adding back and forth dictionaries with languages + ID.
             this.dictionaries.Add(new Dictionary(sourceLanguage, targetLanguage, sourceLanguage + '_' + targetLanguage));
             this.dictionaries.Add(new Dictionary(targetLanguage, sourceLanguage, targetLanguage + '_' + sourceLanguage));
 
-            // Adding back and forth grammars.
-            this.grammars.Add(new Grammar(sourceLanguage, sourceLanguage, sourceLanguage + '_' + targetLanguage));
-            this.grammars.Add(new Grammar(targetLanguage, targetLanguage, targetLanguage + '_' + sourceLanguage));
+            // Adding back and forth grammars with language + ID.
+            this.grammars.Add(new Grammar(sourceLanguage, sourceLanguage));
+            this.grammars.Add(new Grammar(targetLanguage, targetLanguage));
 
             Load();
         }
@@ -75,7 +75,7 @@ namespace Translate.Translators
                 if (word == "")
                 {
                     word = string.Format("[NOT TRANSLATED: {0}]", s[w]);
-                    Console.WriteLine("Word not translated: {0}. The word is probably not in the dictionary.", s[w]);
+                    Console.WriteLine("Word not translated: {0}. The word is not in the dictionary.", s[w]);
                 }
 
                 outputText += word + ' ';

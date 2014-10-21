@@ -9,7 +9,6 @@ namespace Translate.Translators.Grammars
     class Grammar : TranslatorObject
     {
         protected string sourceLanguage;
-        protected string targetLanguage;
 
         protected string fileName;
 
@@ -17,11 +16,10 @@ namespace Translate.Translators.Grammars
         // TODO For easier handling, parse this into a list of all the parts of the rule.
         IList<string> entries = new List<string>();
 
-        public Grammar(string sourceLanguage, string targetLanguage, string id = "")
+        public Grammar(string sourceLanguage, string id = "")
             : base(id)
         {
             this.sourceLanguage = sourceLanguage;
-            this.targetLanguage = targetLanguage;
 
             this.fileName = string.Format("gram_{0}.txt", sourceLanguage);
         }
@@ -72,7 +70,7 @@ namespace Translate.Translators.Grammars
                 for (int i = newLines - 1; i < entries.Count; i++)
                 {
                     string rule = entries[i];
-                    AddEntry(rule, fileName, path);
+                    AddEntryToFile(rule, fileName, path);
                 }
 
                 Console.WriteLine("Grammar updated: {0}", fileName);
@@ -83,16 +81,9 @@ namespace Translate.Translators.Grammars
             }
         }
 
-        public void AddEntry(string rule, string fileName, string path)
+        public void AddEntry(string rule)
         {
-            string entry = rule;
-
-            Console.WriteLine("Adding entry: {0} to grammar {1}", entry, fileName);
-
-            using (StreamWriter w = File.AppendText(path))
-                w.WriteLine(entry);
-
-            Console.WriteLine("Entry added: {0} to grammar {1}", entry, fileName);
+            this.entries.Add(rule);
         }
 
         public void AddEntryToFile(string rule, string fileName, string path)
@@ -107,9 +98,9 @@ namespace Translate.Translators.Grammars
             Console.WriteLine("Entry added: {0} to grammar {1}", entry, fileName);
         }
 
-        public Tuple<string, string> Languages
+        public string Languages
         {
-            get { return new Tuple<string, string>(sourceLanguage, targetLanguage); }
+            get { return sourceLanguage; }
         }
 
         public IList<string> Entries
