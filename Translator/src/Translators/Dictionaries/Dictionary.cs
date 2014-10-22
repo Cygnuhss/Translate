@@ -57,13 +57,14 @@ namespace Translate.Translators.Dictionaries
 
             Console.WriteLine("Updating dictionary: {0}", fileName);
 
-            int newLines = 1;
+            RemoveDuplicates();
+
+            int newLines = entries.Count;
             try
             {
                 // Adding the entries in dictionary to the text file.
                 string[] lines = File.ReadAllLines(path);
-                int linesNr = lines.Length;
-                newLines = entries.Count - linesNr;
+                newLines -= lines.Length;
             }
             catch (IOException)
             {
@@ -72,21 +73,39 @@ namespace Translate.Translators.Dictionaries
             finally
             {     
                 // Appending each new entry to the text file.
-                if (newLines > 0)
-                    for (int i = newLines - 1; i < entries.Count; i++)
-                    {
-                        string sourceWord = entries[i].Item1;
-                        string targetWord = entries[i].Item2;
-                        AddEntryToFile(sourceWord, targetWord, fileName, path);
-                    }
+                for (int i = entries.Count - newLines; i < entries.Count; i++)
+                {
+                    string sourceWord = entries[i].Item1;
+                    string targetWord = entries[i].Item2;
+                    AddEntryToFile(sourceWord, targetWord, fileName, path);
+                }
 
                 Console.WriteLine("Dictionary updated: {0}", fileName);
             }
         }
 
+        public void RemoveDuplicates()
+        {
+            IList<Tuple<string, string>> toRemove = new List<Tuple<string, string>>();
+
+            foreach (Tuple<string, string> entry1 in entries)
+                foreach (Tuple<string, string> entry2 in entries)
+                    if (entry1 == entry2)
+                        toRemove.Add(entry2);
+
+
+            entries.Remove(entry2);
+        }
+
+        public string Standardize(string s)
+        {
+            s = s.ToLower();
+            return s;
+        }
+
         public void AddEntry(string sourceWord, string targetWord)
         {
-            this.entries.Add(new Tuple<string, string>(sourceWord, targetWord));
+            this.entries.Add(new Tuple<string, string>(Standardize(sourceWord), Standardize(targetWord)));
         }
 
         public void AddEntryToFile(string sourceWord, string targetWord, string fileName, string path)

@@ -58,13 +58,12 @@ namespace Translate.Translators.Grammars
 
             Console.WriteLine("Updating grammar: {0}", fileName);
 
-            int newLines = 1;
+            int newLines = entries.Count;
             try
             {
                 // Adding the entries in grammar to the text file.
                 string[] lines = File.ReadAllLines(path);
-                int linesNr = lines.Length;
-                newLines = entries.Count - linesNr;
+                newLines -= lines.Length;
             }
             catch (IOException)
             {
@@ -73,12 +72,11 @@ namespace Translate.Translators.Grammars
             finally
             {
                 // Appending each new entry to the text file.
-                if (newLines > 0)
-                    for (int i = newLines - 1; i < entries.Count; i++)
-                    {
-                        string[] rule = entries[i];
-                        AddEntryToFile(rule, fileName, path);
-                    }
+                for (int i = entries.Count - newLines; i < entries.Count; i++)
+                {
+                    string[] rule = entries[i];
+                    AddEntryToFile(rule, fileName, path);
+                }
 
                 Console.WriteLine("Grammar updated: {0}", fileName);
             }
