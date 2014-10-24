@@ -10,12 +10,11 @@ namespace Translate.Translators.Dictionaries
     {
         protected string sourceLanguage;
         protected string targetLanguage;
-
         protected string fileName;
 
         // A dictionary is a list of tuples containing the word in the source language
         // as a string and the translation of it in the target language as a string.
-        IList<Tuple<string, string>> entries = new List<Tuple<string, string>>();
+        IList<Tuple<string, string>> entries;
 
         public Dictionary(string sourceLanguage, string targetLanguage, string id = "")
             : base(id)
@@ -23,7 +22,11 @@ namespace Translate.Translators.Dictionaries
             this.sourceLanguage = sourceLanguage;
             this.targetLanguage = targetLanguage;
 
+            // File name is of this format: dict_[sourcelanguage]_[targetlanguage].txt
             this.fileName = string.Format("dict_{0}_{1}.txt", sourceLanguage, targetLanguage);
+
+            entries = new List<Tuple<string, string>>();
+            Load();
         }
 
         public void Load()
@@ -86,15 +89,9 @@ namespace Translate.Translators.Dictionaries
 
         public void RemoveDuplicates()
         {
-            IList<Tuple<string, string>> toRemove = new List<Tuple<string, string>>();
-
-            foreach (Tuple<string, string> entry1 in entries)
-                foreach (Tuple<string, string> entry2 in entries)
-                    if (entry1 == entry2)
-                        toRemove.Add(entry2);
-
-
-            entries.Remove(entry2);
+            // Make sure that even though multiple identical entries might be added,
+            // only one will remain.
+            entries = new List<Tuple<string, string>>(new HashSet<Tuple<string, string>>(entries));
         }
 
         public string Standardize(string s)
@@ -105,11 +102,13 @@ namespace Translate.Translators.Dictionaries
 
         public void AddEntry(string sourceWord, string targetWord)
         {
+            // Add the entry to the list.
             this.entries.Add(new Tuple<string, string>(Standardize(sourceWord), Standardize(targetWord)));
         }
 
         public void AddEntryToFile(string sourceWord, string targetWord, string fileName, string path)
         {
+            // Write all of the entries to the file.
             string entry = sourceWord + '\t' + targetWord;
 
             Console.WriteLine("Adding entry: {0} to dictionary {1}", entry, fileName);

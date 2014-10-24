@@ -62,8 +62,9 @@
     <Compile Include="src\TranslateMain.cs" />
     <Compile Include="src\Translators\Dictionaries\Dictionary.cs" />
     <Compile Include="src\Translators\Dictionaries\DictionaryManager.cs" />
-    <Compile Include="src\Translators\Grammar\Grammar.cs" />
-    <Compile Include="src\Translators\Grammar\GrammarManager.cs" />
+    <Compile Include="src\Translators\Grammars\Grammar.cs" />
+    <Compile Include="src\Translators\Grammars\GrammarManager.cs" />
+    <Compile Include="src\Translators\Grammars\Parsers\Parser.cs" />
     <Compile Include="src\Translators\Utilities\TranslatorObjectList.cs" />
     <Compile Include="src\Translators\Translator.cs" />
     <Compile Include="src\TranslateGUI.cs">

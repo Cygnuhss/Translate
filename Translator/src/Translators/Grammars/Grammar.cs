@@ -3,26 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using Translate.Translators.Utilities;
+using Translate.Translators.Grammars.Parsers;
 
 namespace Translate.Translators.Grammars
 {
     class Grammar : TranslatorObject
     {
         protected string sourceLanguage;
-
         protected string fileName;
 
         // A grammar is a list of strings containing the grammatical rules.
         IList<string[]> entries;
+        Parser parser;
 
         public Grammar(string sourceLanguage, string id = "")
             : base(id)
         {
             this.sourceLanguage = sourceLanguage;
 
-            entries = new List<string[]>();
-
+            // File name is of this format: gram_[sourcelanguage].txt
             this.fileName = string.Format("gram_{0}.txt", sourceLanguage);
+
+            entries = new List<string[]>();
+            Load();
+            parser = new Parser(this);
         }
 
         public void Load()
@@ -49,6 +53,8 @@ namespace Translate.Translators.Grammars
             {
                 Console.WriteLine("File not found: {0}. Grammar not loaded.", fileName);
             }
+
+            parser.Load();
         }
 
         public void Update()
@@ -57,6 +63,8 @@ namespace Translate.Translators.Grammars
             string path = Path.Combine(cd, @"res\Grammars", fileName);
 
             Console.WriteLine("Updating grammar: {0}", fileName);
+
+            RemoveDuplicates();
 
             int newLines = entries.Count;
             try
@@ -80,10 +88,20 @@ namespace Translate.Translators.Grammars
 
                 Console.WriteLine("Grammar updated: {0}", fileName);
             }
+
+            parser.Update();
+        }
+
+        public void RemoveDuplicates()
+        {
+            // Make sure that even though multiple identical entries might be added,
+            // only one will remain.
+            entries = new List<string[]>(new HashSet<string[]>(entries));
         }
 
         public void AddEntry(string rule)
         {
+            // Add the entry to the list.
             this.entries.Add(rule.Split(' '));
         }
 
@@ -94,6 +112,7 @@ namespace Translate.Translators.Grammars
 
         public void AddEntryToFile(string[] rule, string fileName, string path)
         {
+            // Write all of the entries to the file.
             string entry = string.Join(" ", rule);
 
             Console.WriteLine("Adding entry: {0} to grammar {1}", entry, fileName);

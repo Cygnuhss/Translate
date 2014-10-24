@@ -15,7 +15,7 @@ namespace Translate
             translatorObjectList.Add(new TranslatorManager("translatorManager"));
         }
 
-        public static TranslatorObjectList TranslatorObjectList
+        public static TranslatorObjectList TranslatorObjects
         {
             get { return translatorObjectList; }
         }

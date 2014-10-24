@@ -42,7 +42,7 @@ namespace Translate
         {
             // Translate the input text and place it in the output text. Cursors appears as 'Wait' cursor in the meanwhile.
             translateButton.UseWaitCursor = true;
-            TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
+            TranslatorManager tm = TranslateMain.TranslatorObjects.Find("translatorManager") as TranslatorManager;
             string translatorID = string.Format("{0}_{1}", sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
             outputTextBox.Text = tm.Translate(inputTextBox.Text, translatorID);
             translateButton.UseWaitCursor = false;
@@ -52,7 +52,7 @@ namespace Translate
         {
             // Initialise translator with the source and target language. Cursors appears as 'Wait' cursor in the meanwhile.
             loadTranslatorButton.UseWaitCursor = true;
-            TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
+            TranslatorManager tm = TranslateMain.TranslatorObjects.Find("translatorManager") as TranslatorManager;
             tm.InitialiseTranslator(sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
             loadTranslatorButton.UseWaitCursor = false;
         }
@@ -61,7 +61,7 @@ namespace Translate
         {
             // Update the translator. Cursors appears as 'Wait' cursor in the meanwhile.
             updateTranslatorButton.UseWaitCursor = true;
-            TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
+            TranslatorManager tm = TranslateMain.TranslatorObjects.Find("translatorManager") as TranslatorManager;
             string translatorID = string.Format("{0}_{1}", sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
             tm.Update(translatorID);
             updateTranslatorButton.UseWaitCursor = false;
@@ -71,7 +71,7 @@ namespace Translate
         {
             // Add the entry to the dictionary. Cursors appears as 'Wait' cursor in the meanwhile.
             addDictionaryEntryButton.UseWaitCursor = true;
-            TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
+            TranslatorManager tm = TranslateMain.TranslatorObjects.Find("translatorManager") as TranslatorManager;
             string id = string.Format("{0}_{1}", sourceLanguageTextBox.Text, targetLanguageTextBox.Text);
             Translator t = tm.Find(id) as Translator;
             try
@@ -89,7 +89,7 @@ namespace Translate
         {
             // Add the entry to the grammar. Cursors appears as 'Wait' cursor in the meanwhile.
             addGrammarEntryButton.UseWaitCursor = true;
-            TranslatorManager tm = TranslateMain.TranslatorObjectList.Find("translatorManager") as TranslatorManager;
+            TranslatorManager tm = TranslateMain.TranslatorObjects.Find("translatorManager") as TranslatorManager;
             string id = sourceLanguageTextBox.Text;
             Translator t = tm.Find(string.Format("{0}_{1}", id, targetLanguageTextBox.Text)) as Translator;
             try
