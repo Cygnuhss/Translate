@@ -1,0 +1,2 @@
+S NP VP PP DET N V
+dog cat house
