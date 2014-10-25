@@ -13,10 +13,11 @@ namespace Translate.Translators.Grammars.Parsers
 
         protected Grammar relatedGrammar;
 
-        //
-        IList<string> term = new List<string>();
-        IList<string> nterm = new List<string>();
-        IList<string[]> rules = new List<string[]>();
+        protected string START_SYMBOL = "S";
+        // Terminals are on the Left-Hand Side of the arrow (->), non-terminals are on the Right-Hand Side.
+        protected IList<string> term = new List<string>();
+        protected IList<string> nterm = new List<string>();
+        protected IList<string[]> rules = new List<string[]>();
 
         public Parser(Grammar g, string id = "")
             : base(id)

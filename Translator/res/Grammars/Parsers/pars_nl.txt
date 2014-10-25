@@ -1,2 +1,2 @@
-S NP VP PP DET N V
-hond kat huis
+S NP VP PP
+DET N V
